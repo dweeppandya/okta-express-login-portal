@@ -84,6 +84,9 @@
         <nav class="my-2 my-md-0 mr-md-3"><a class="p-2 text-dark" href="/" title="Home">Home</a><a class="p-2 text-dark" href="/users/logout">Logout</a></nav>
     </div>
     <div class="container">
+      <div class="jumbotron" style="text-align: center">
+        <h4>Welcome to your dashboard page,<%= user.profile.firstName %>. </h4>
+      </div>
       <fieldset>
         <form action="/dashboard" method="post">
           <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
