@@ -24,12 +24,14 @@ router.post("/", (req, res) => {
       if(weather.main == undefined){
         res.render('dashboard.ejs', {weather: null, error: 'Error, please try again'});
       } else {
+        let longitude = weather.coord.lon;
+        let latitude = weather.coord.lat;
         let min_temp = `with a minimum of ${weather.main.temp_min}`
         let max_temp = `and with a high of ${weather.main.temp_max}`
         let weatherText = `It's ${weather.main.temp} degrees Celsius in ${weather.name}!`;
         let pressure = `Pressure: ${weather.main.pressure}`;
         let humidity = `Humidity: ${weather.main.humidity}`;
-        res.render('dashboard.ejs', {weather: weatherText, pressure: pressure, humidity: humidity, error: null});
+        res.render('dashboard.ejs', {weather: weatherText, pressure: pressure, humidity: humidity, longitude: longitude, latitude: latitude, error: null});
       }
     }
   });
