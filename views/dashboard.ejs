@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <style>
+      fieldset {
+        display: block;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        -webkit-padding-before: 0em;
+        -webkit-padding-start: 0em;
+        -webkit-padding-end: 0em;
+        -webkit-padding-after: 0em;
+        border: 0px;
+        border-image-source: initial;
+        border-image-slice: initial;
+        border-image-width: initial;
+        border-image-outset: initial;
+        border-image-repeat: initial;
+        min-width: -webkit-min-content;
+        padding: 30px;
+      }
+      .ghost-input, p {
+        display: block;
+        font-weight:300;
+        width: 100%;
+        font-size: 25px;
+        border:0px;
+        outline: none;
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #4b545f;
+        background: #fff;
+        font-family: Open Sans,Verdana;
+        padding: 10px 15px;
+        margin: 30px 0px;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+      }
+      .ghost-input:focus {
+        border-bottom:1px solid #ddd;
+      }
+      .ghost-button {
+        background-color: transparent;
+        border:2px solid #ddd;
+        padding:10px 30px;
+        width: 100%;
+        min-width: 350px;
+        -webkit-transition: all 0.1s ease-in-out;
+        -moz-transition: all 0.1s ease-in-out;
+        -ms-transition: all 0.1s ease-in-out;
+        -o-transition: all 0.1s ease-in-out;
+        transition: all 0.1s ease-in-out;
+      }
+      .ghost-button:hover {
+        border:2px solid #515151;
+      }
+      p {
+        color: #E64A19;
+      }
+    </style>
+    <title>okta-express-login-portal: </title>
+</head>
+
+<body>
+    <div class="top-bar d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+        <h5 class="my-0 mr-md-auto font-weight-normal"><a href="/" title="Expresso">weather-app-login-portal</a></h5>
+        <nav class="my-2 my-md-0 mr-md-3"><a class="p-2 text-dark" href="/" title="Home">Home</a><a class="p-2 text-dark" href="/users/logout">Logout</a></nav>
+    </div>
+    <div class="container">
+      <fieldset>
+        <form action="/dashboard" method="post">
+          <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
+          <input type="submit" class="ghost-button" value="Get Weather">
+        </form>
+        <% if(weather !== null){ %>
+          <p><%= weather %></p>
+        <% } %>
+        <% if(error !== null){ %>
+          <p><%= error %></p>
+        <% } %>
+      </fieldset>
+    </div>
+    <footer>Built with <a href="https://expressjs.com/">Express.js</a>, login powered by <a href="https://developer.okta.com/">Okta</a>.</footer>
+</body>
+
+</html>
