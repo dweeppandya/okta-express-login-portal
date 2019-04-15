@@ -13,6 +13,14 @@
         height: 400px;
         width: 100%;
       }
+      body {
+        margin: 0 auto;
+        font-family: 'Open Sans', sans-serif;
+      }
+      .container {
+        width: 600px;
+        margin: 0 auto;
+      }
       fieldset {
         display: block;
         -webkit-margin-start: 0px;
@@ -37,7 +45,6 @@
         font-size: 25px;
         border:0px;
         outline: none;
-        width: 100%;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
@@ -74,6 +81,7 @@
         color: #E64A19;
       }
     </style>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
     <title>okta-express-login-portal: </title>
 </head>
@@ -92,8 +100,55 @@
           <input name="city" type="text" class="ghost-input" placeholder="Enter a City" required>
           <input type="submit" class="ghost-button" value="Get Weather">
         </form>
-        <% if(weather !== null){ %>
-          <p><%= weather %></p>
+        <br><br><br>
+        <% if(city !== null){ %>
+          <p><%= city %></p>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th>Longitude/Latitude</th>
+                <th>Temperature</th>
+                <th>Min Temp</th>
+		            <th>Max Temp</th>
+		            <th>Pressure</th>
+                <th>Humidity</th>
+		            <th>Wind Speed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><% if(coord !== null){ %>
+                  <%= coord %>
+                  <% } %>
+                </td>
+                <td><% if(weather !== null){ %>
+                  <%= weather %>
+                  <% } %>
+                </td>
+                <td><% if(minTemp!== null){ %>
+                  <%= minTemp %>
+                  <% } %>
+		            </td>
+		            <td><% if(maxTemp !== null){ %>
+                  <%= maxTemp %>
+                  <% } %>
+		            </td>
+                <td><% if(pressure !== null){ %>
+                  <%= pressure %>
+                  <% } %>
+                </td>
+                <td><% if(humidity !== null){ %>
+                  <%= humidity %>
+                  <% } %>
+		            </td>
+		            <td><% if(speed !== null){ %>
+                  <%= speed %>
+                  <% } %>
+		            </td>
+              </tr>
+            </tbody>
+          </table>
+
           <div id="map" class="map"></div>
           <script type="text/javascript">
           var baseMapLayer = new ol.layer.Tile({
