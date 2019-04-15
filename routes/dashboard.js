@@ -8,7 +8,7 @@ const apiKey = 'e19684bcfecb85a0c2061a0460d70dec';
 // Display the dashboard page
 router.get("/", (req, res) => {
   // res.render("dashboard");
-  res.render('dashboard.ejs', {weather: null, error: null});
+  res.render('dashboard.ejs', {des:null, speed:null, coord:null, weather: null, pressure: null, humidity: null, minTemp:null, maxTemp:null, city:null, longitude: null, latitude: null, error: null});
 });
 
 router.post("/", (req, res) => {
@@ -26,12 +26,17 @@ router.post("/", (req, res) => {
       } else {
         let longitude = weather.coord.lon;
         let latitude = weather.coord.lat;
-        let min_temp = `with a minimum of ${weather.main.temp_min}`
-        let max_temp = `and with a high of ${weather.main.temp_max}`
-        let weatherText = `It's ${weather.main.temp} degrees Celsius in ${weather.name}!`;
-        let pressure = `Pressure: ${weather.main.pressure}`;
-        let humidity = `Humidity: ${weather.main.humidity}`;
-        res.render('dashboard.ejs', {weather: weatherText, pressure: pressure, humidity: humidity, longitude: longitude, latitude: latitude, error: null});
+        let minTempText=`${weather.main.temp_min} C`;
+        let maxTempText=`${weather.main.temp_max} C`;
+        let weatherText = `${weather.main.temp} C`;
+        let pressureText =`${weather.main.pressure} hPa `;
+        let humidityText= `${weather.main.humidity}%`;
+        let country = (weather.sys.country) ? weather.sys.country : '' ;
+        let cityCountry = city+','+country;
+        let coord=`${weather.coord.lon}/${weather.coord.lat}`;
+        let speed=`${weather.wind.speed}`;
+        let des=`${weather.weather.main}`;
+        res.render('dashboard.ejs', {des:des, speed:speed, coord:coord, weather: weatherText, pressure: pressureText, humidity: humidityText, minTemp:minTempText, maxTemp:maxTempText, city:cityCountry, longitude: longitude, latitude: latitude, error: null});
       }
     }
   });
